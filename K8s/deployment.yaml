@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: security-check
+  namespace: secure-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: security-check
+  template:
+    metadata:
+      labels:
+        app: security-check
+    spec:
+      containers:
+      - name: security-check
+        image: your-dockerhub-or-local-image
+        ports:
+        - containerPort: 8080
+        securityContext:
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
