@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: security-check
+  name: sentry-pod
   namespace: secure-platform
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: security-check
+      app: sentry-pod
   template:
     metadata:
       labels:
-        app: security-check
+        app: sentry-pod
     spec:
       containers:
-      - name: security-check
-        image: your-dockerhub-or-local-image
+      - name: sentry-pod
+        image: sentry-pod:local
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
         securityContext:
