@@ -1,19 +1,31 @@
-
-terraform/*
-
-#allowlist
-!terraform/*.tf
-!terraform/*.tfvars
-!terraform/*.tfvars.example
-!terraform/.terraform.lock.hcl
-
-#blocklist
+# Terraform junk only
 terraform/.terraform/
 terraform/*.tfstate
 terraform/*.tfstate.*
 terraform/crash.log
-terraform/terraform.tfvars
+terraform/override.tf
+terraform/override.tf.json
+terraform/*_override.tf
+terraform/*_override.tf.json
+terraform/*.tfvars
+terraform/*.pem
+terraform/*.key
 
+# keep terraform code
+!terraform/*.tf
+!terraform/*.tfvars.example
 
+# keep lock file if it's at repo root
+!.terraform.lock.hcl
+
+# editor / OS junk
 .DS_Store
 .vscode/
+.idea/
+
+# logs / binaries
+*.log
+bin/
+*.exe
+*.test
+*.out
